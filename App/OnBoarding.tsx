@@ -29,7 +29,7 @@ export default function OnBoarding() {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("Register")}
+          onPress={() => navigation.navigate("AuthScreen", { mode: "register" })}
         >
           <LinearGradient
             colors={["#5B6BDA", "#5B6BDA"]}
@@ -45,7 +45,7 @@ export default function OnBoarding() {
           Already have an account?{" "}
           <Text
             style={styles.signinLink}
-            onPress={() => navigation.navigate("Login")}
+          onPress={() => navigation.navigate("AuthScreen", { mode: "login" })}
           >
             Sign in
           </Text>
