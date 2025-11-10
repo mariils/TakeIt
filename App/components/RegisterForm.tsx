@@ -3,12 +3,20 @@ import {View,Text,TextInput,TouchableOpacity,StyleSheet,KeyboardAvoidingView,Pla
 import { LinearGradient } from "expo-linear-gradient";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useFonts, RethinkSans_400Regular, RethinkSans_600SemiBold } from "@expo-google-fonts/rethink-sans";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../Navigation";
+import { useNavigation } from "@react-navigation/native";
+import Homepage from "../Homepage/Homepage";
 
 interface RegisterFormProps {
   onSwitchToLogin: () => void;
+  
 }
+type NavigationProp = NativeStackNavigationProp<RootStackParamList, "AuthScreen">;
 
 export default function RegisterForm({ onSwitchToLogin }: RegisterFormProps) {
+  const navigation = useNavigation<NavigationProp>();
+  const [UserName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -42,6 +50,23 @@ export default function RegisterForm({ onSwitchToLogin }: RegisterFormProps) {
                 </Text>
               </TouchableOpacity>
             </View>
+
+            {/* UserName Input */}
+                    <View style={styles.inputContainer}>
+                      <MaterialCommunityIcons
+                        name="account-outline"
+                        size={20}
+                        color="#5B6BDA"
+                        style={styles.icon}
+                      />
+                      <TextInput
+                        style={styles.input}
+                        placeholder="Name"
+                        placeholderTextColor="#999"
+                        value={UserName}
+                        onChangeText={setUserName}
+                      />
+                    </View>
 
             {/* Email Input */}
             <View style={styles.inputContainer}>
@@ -97,7 +122,7 @@ export default function RegisterForm({ onSwitchToLogin }: RegisterFormProps) {
             </View>
 
             {/* Continue Button */}
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} >
               <LinearGradient
                 colors={["#5B6BDA", "#364ED1"]}
                 start={{ x: 0, y: 0 }}
@@ -109,7 +134,7 @@ export default function RegisterForm({ onSwitchToLogin }: RegisterFormProps) {
             </TouchableOpacity>
 
             <Text style={styles.orText}>Or continue with</Text>
-            <TouchableOpacity style={styles.googleButton}>
+            <TouchableOpacity style={styles.googleButton} onPress={() => navigation.navigate("Homepage")}>
               <MaterialCommunityIcons name="google" size={28} color="#5B6BDA" />
             </TouchableOpacity>
           </View>

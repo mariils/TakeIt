@@ -3,12 +3,20 @@ import {View,Text,TextInput,TouchableOpacity, StyleSheet,} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useFonts, RethinkSans_400Regular, RethinkSans_600SemiBold } from "@expo-google-fonts/rethink-sans";
+import { useNavigation } from "@react-navigation/native";
+import Homepage from "../Homepage/Homepage";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../Navigation";
 
 interface LoginFormProps {
   onSwitchToRegister: () => void;
 }
 
+type NavigationProp = NativeStackNavigationProp<RootStackParamList, "AuthScreen">;
+
 export default function LoginForm({ onSwitchToRegister }: LoginFormProps) {
+  const navigation = useNavigation<NavigationProp>();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
    const [fontsLoaded] = useFonts({
@@ -75,7 +83,7 @@ export default function LoginForm({ onSwitchToRegister }: LoginFormProps) {
         </View>
 
         {/* Continue Button */}
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Homepage")}>
           <LinearGradient
             colors={["#5B6BDA", "#364ED1"]}
             start={{ x: 0, y: 0 }}
