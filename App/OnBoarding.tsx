@@ -1,26 +1,31 @@
-import React from "react";
-import { View, Text, ImageBackground, StyleSheet, TouchableOpacity } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
-import { useFonts, RethinkSans_400Regular, RethinkSans_600SemiBold } from "@expo-google-fonts/rethink-sans";
-import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "./Navigation";
-import pill from "./assets/pill.png";
+// Importa as dependências necessárias
+import React from "react"; // Biblioteca principal do React
+import { View, Text, ImageBackground, StyleSheet, TouchableOpacity } from "react-native"; // Componentes nativos do React Native
+import { LinearGradient } from "expo-linear-gradient"; // Permite criar gradientes de cor nos botões
+import { useFonts, RethinkSans_400Regular, RethinkSans_600SemiBold } from "@expo-google-fonts/rethink-sans"; // Importa e usa fontes personalizadas
+import { useNavigation } from "@react-navigation/native"; // Hook para navegar entre telas
+import { NativeStackNavigationProp } from "@react-navigation/native-stack"; // Tipagem para navegação Stack
+import { RootStackParamList } from "./Navigation"; // Tipagem das rotas definidas no arquivo Navigation
+import pill from "./assets/pill.png"; // Imagem usada como fundo da tela
 
+// Define o tipo de navegação para esta tela
 type OnBoardingNavProp = NativeStackNavigationProp<RootStackParamList, "OnBoarding">;
 
 export default function OnBoarding() {
-  const navigation = useNavigation<OnBoardingNavProp>();
+  const navigation = useNavigation<OnBoardingNavProp>();  // Hook que dá acesso à navegação tipada
 
+  // Carrega as fontes personalizadas
   const [fontsLoaded] = useFonts({
     RethinkSans_400Regular,
     RethinkSans_600SemiBold,
   });
 
+  // Enquanto as fontes não carregam, retorna nada (evita erro de renderização)
   if (!fontsLoaded) {
     return null;
   }
 
+ // Retorno visual da tela (UI)
   return (
     <ImageBackground source={pill} resizeMode="cover" style={styles.background}>
       <View style={styles.bottomContainer}>

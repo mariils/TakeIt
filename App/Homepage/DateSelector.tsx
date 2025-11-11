@@ -1,6 +1,11 @@
 // screens/DateSelector.tsx
+//React: é o núcleo do React Native — necessário para criar componentes.
 import React from "react";
+//Text: exibe textos na tela.
+//FlatList: componente otimizado para listas (neste caso, uma lista horizontal de datas).
+// TouchableOpacity: botão que muda de aparência ao ser pressionado.
 import { FlatList, TouchableOpacity, Text } from "react-native";
+//styled: vem do styled-components, usado para criar estilos personalizados de forma mais organizada (como CSS no React Native).
 import styled from "styled-components/native";
 
 interface DateSelectorProps {
@@ -44,7 +49,7 @@ export default function DateSelector({ selectedDate, onDateChange }: DateSelecto
   );
 }
 
-// 🌈 Estilos
+// Estilização da Interface
 const Container = styled.View`
   margin-top: 20px;
 `;

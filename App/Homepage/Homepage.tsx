@@ -87,7 +87,7 @@ export default function Homepage() {
   );
 }
 
-// 🌈 Estilos
+
 const Container = styled(SafeAreaView)`
   flex: 1;
   background-color: #f8f8f8;
